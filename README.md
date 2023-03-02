@@ -34,7 +34,7 @@
 
 # 📖 About <a name="about"></a>
 
-**BOOKSTORE** is a website is used to:
+**BOOKSTORE** is a website that allows a client or user  to:
 
 - Display a list of books
 - Add a book
@@ -160,5 +160,12 @@ I would like to thank Microverse for the information provided to build this proj
   - No, all data is saved in the involvement api
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📝 License <a name="license"></a>
+
+This project is [MIT](./LICENSE) licensed.
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
