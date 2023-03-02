@@ -4,9 +4,9 @@ import '../css/Navbar.css';
 const Navbar = () => (
   <header className="nav">
     <ul>
-      <li><NavLink to="/">Bookstore CMS</NavLink></li>
-      <li><NavLink to="books">Books</NavLink></li>
-      <li><NavLink to="categories">Categories</NavLink></li>
+      <li><NavLink to="/" className="link">Bookstore CMS</NavLink></li>
+      <li><NavLink to="books" className="link">Books</NavLink></li>
+      <li><NavLink to="categories" className="link">Categories</NavLink></li>
     </ul>
   </header>
 );
