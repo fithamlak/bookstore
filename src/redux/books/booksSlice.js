@@ -77,16 +77,17 @@ const booksSlice = createSlice({
       state.isLoading = false;
       state.ifSucceed = false;
     },
-  },
 
-  [removeBook.pending]: (state) => {
-    state.isLoading = true;
-  },
-  [removeBook.fulfilled]: (state) => {
-    state.isLoading = false;
-  },
-  [removeBook.rejected]: (state) => {
-    state.isLoading = false;
+    [removeBook.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [removeBook.fulfilled]: (state) => {
+      state.isLoading = false;
+      state.ifSucceed = false;
+    },
+    [removeBook.rejected]: (state) => {
+      state.isLoading = false;
+    },
   },
 });
 
