@@ -3,39 +3,33 @@ import { useEffect } from 'react';
 import Form from '../components/Form';
 import Book from '../components/Book';
 import '../css/books.css';
-import {
-  selectAllBooks,
-  getBooksStatus,
-  getBooksError,
-  fetchBooks,
-} from '../redux/books/booksSlice';
+import { fetchBooks } from '../redux/books/booksSlice';
 
 const Books = () => {
   const dispatch = useDispatch();
-  const books = useSelector(selectAllBooks);
-  const booksStatus = useSelector(getBooksStatus);
-  const booksError = useSelector(getBooksError);
+  const ifSucceed = useSelector((store) => (store.books.ifSucceed));
+  const books = useSelector((store) => store.books.books);
+  const isLoading = useSelector((store) => store.books.isLoading);
 
   useEffect(() => {
-    if (booksStatus === 'idle') {
-      dispatch(fetchBooks());
-    }
-  }, [booksStatus, dispatch]);
+    dispatch(fetchBooks());
+  }, [ifSucceed, dispatch]);
 
   let responseData;
-  if (booksStatus === 'loading') {
+  if (isLoading) {
     responseData = <p>Loading...</p>;
-  } else if (booksStatus === 'succeeded') {
-    responseData = books.map((book) => (
-      <Book
-        key={book.item_id}
-        id={book.item_id}
-        title={book.title}
-        author={book.author}
-      />
-    ));
-  } else if (booksStatus === 'failed') {
-    responseData = <p>{booksError}</p>;
+  } else if (ifSucceed) {
+    responseData = Object.keys(books).map((key) => {
+      const currentBook = books[key][0];
+      return (
+        <Book
+          key={key}
+          id={key}
+          title={currentBook.title}
+          author={currentBook.author}
+        />
+      );
+    });
   }
   return (
     <div>

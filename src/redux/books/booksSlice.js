@@ -5,30 +5,43 @@ import axios from 'axios';
 const API_BOOKS_URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/0AXvckrVNcvHP5pgzcwk/books';
 
 const initialState = {
-  books: [],
-  status: 'idle',
+  books: {},
+  ifSucceed: false,
+  isLoading: false,
   error: null,
 };
 
-export const fetchBooks = createAsyncThunk(
+const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
   async () => {
     try {
-      const response = await axios.get(API_BOOKS_URL);
-      return [...response.data];
+      const { data } = await axios.get(API_BOOKS_URL);
+      return data;
     } catch (err) {
       return err.message;
     }
   },
 );
+
+const addBook = createAsyncThunk('books/addBooks', async (book) => {
+  const data = JSON.stringify(book);
+  const headers = {
+    headers: {
+      'content-type': 'application/json',
+    },
+  };
+  try {
+    await axios.post(API_BOOKS_URL, data, headers);
+    return { message: 'Book added successfully' };
+  } catch (error) {
+    return error;
+  }
+});
+
 const booksSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {
-    addBook: (state, action) => ({
-      ...state,
-      books: [...state.books, action.payload],
-    }),
     removeBook: (state, action) => ({
       ...state,
       books: state.books.filter((book) => book.item_id !== action.payload),
@@ -36,22 +49,33 @@ const booksSlice = createSlice({
   },
   extraReducers: {
     [fetchBooks.pending]: (state) => {
-      state.status = 'loading';
+      state.status = true;
     },
     [fetchBooks.fulfilled]: (state, action) => {
-      state.status = 'succeeded';
+      state.isLoading = false;
+      state.ifSucceed = true;
       state.books = action.payload;
     },
     [fetchBooks.rejected]: (state) => {
-      state.status = 'failed';
-      state.books = [];
+      state.isLoading = false;
+      state.ifSucceed = false;
+    },
+
+    [addBook.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [addBook.fulfilled]: (state) => {
+      state.isLoading = false;
+      state.ifSucceed = true;
+    },
+    [addBook.rejected]: (state) => {
+      state.isLoading = false;
+      state.ifSucceed = false;
     },
   },
 });
 
-export const { addBook, removeBook } = booksSlice.actions;
-export const selectAllBooks = (state) => state.books.books;
-export const getBooksStatus = (state) => state.books.status;
-export const getBooksError = (state) => state.books.error;
+export { fetchBooks, addBook };
+export const { removeBook } = booksSlice.actions;
 
 export default booksSlice.reducer;
