@@ -2,13 +2,19 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const API_BOOKS_URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/0AXvckrVNcvHP5pgzcwk/books';
+const API_BOOKS_URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/0AXvckrVNcvHP5pgzcwk/books/';
 
 const initialState = {
   books: {},
   ifSucceed: false,
   isLoading: false,
   error: null,
+};
+
+const headers = {
+  headers: {
+    'content-type': 'application/json',
+  },
 };
 
 const fetchBooks = createAsyncThunk(
@@ -25,14 +31,19 @@ const fetchBooks = createAsyncThunk(
 
 const addBook = createAsyncThunk('books/addBooks', async (book) => {
   const data = JSON.stringify(book);
-  const headers = {
-    headers: {
-      'content-type': 'application/json',
-    },
-  };
   try {
-    await axios.post(API_BOOKS_URL, data, headers);
-    return { message: 'Book added successfully' };
+    const response = await axios.post(API_BOOKS_URL, data, headers);
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+});
+
+const removeBook = createAsyncThunk('books/removeBook', async (id) => {
+  const data = JSON.stringify({ item_id: id });
+  try {
+    const response = await axios.delete(API_BOOKS_URL + id, data, headers);
+    return response.data;
   } catch (error) {
     return error;
   }
@@ -41,12 +52,7 @@ const addBook = createAsyncThunk('books/addBooks', async (book) => {
 const booksSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {
-    removeBook: (state, action) => ({
-      ...state,
-      books: state.books.filter((book) => book.item_id !== action.payload),
-    }),
-  },
+  reducers: {},
   extraReducers: {
     [fetchBooks.pending]: (state) => {
       state.status = true;
@@ -58,7 +64,6 @@ const booksSlice = createSlice({
     },
     [fetchBooks.rejected]: (state) => {
       state.isLoading = false;
-      state.ifSucceed = false;
     },
 
     [addBook.pending]: (state) => {
@@ -66,16 +71,25 @@ const booksSlice = createSlice({
     },
     [addBook.fulfilled]: (state) => {
       state.isLoading = false;
-      state.ifSucceed = true;
+      state.ifSucceed = false;
     },
     [addBook.rejected]: (state) => {
       state.isLoading = false;
       state.ifSucceed = false;
     },
   },
+
+  [removeBook.pending]: (state) => {
+    state.isLoading = true;
+  },
+  [removeBook.fulfilled]: (state) => {
+    state.isLoading = false;
+  },
+  [removeBook.rejected]: (state) => {
+    state.isLoading = false;
+  },
 });
 
-export { fetchBooks, addBook };
-export const { removeBook } = booksSlice.actions;
+export { fetchBooks, addBook, removeBook };
 
 export default booksSlice.reducer;
