@@ -16,6 +16,10 @@
   letter-spacing: 1.05px;
 }
 
+.app_logo:active {
+  color: #0090ff;
+}
+
 .link {
   color: grey;
   font-size: 0.875rem;

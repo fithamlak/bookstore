@@ -4,6 +4,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import RemoveButton from './RemoveButton';
 import { removeBook } from '../redux/books/booksSlice';
 import '../css/book.css';
+import 'react-circular-progressbar/dist/styles.css';
 
 const Book = ({ id, title, author }) => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const Book = ({ id, title, author }) => {
         </li>
         <li className="progress-stats">
           <div className="progress-bar">
-            <CircularProgressbar value={55} />
+            <CircularProgressbar value={75} />
           </div>
           <div className="progress-number">
             <h3>64%</h3>
