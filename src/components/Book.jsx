@@ -11,7 +11,7 @@ const Book = ({ id, title, author }) => {
     dispatch(removeBook(id));
   };
   return (
-    <li className="book-container">
+    <div className="book-container">
       <ul className="book">
         <li>
           <h3 className="category">Fiction</h3>
@@ -39,7 +39,7 @@ const Book = ({ id, title, author }) => {
           <button type="button">UPDATE PROGRESS</button>
         </li>
       </ul>
-    </li>
+    </div>
   );
 };
 Book.propTypes = {
