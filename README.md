@@ -67,6 +67,7 @@
 - **Add reducers and actions**
 - **Use Redux in React components**
 - **Connect to API To Post and featch books**
+- [ ] **Project 5: Stylinge**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -115,7 +116,6 @@ To run the project, execute the following command:
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
-- [ ] **Project 5: Stylinge**
 - [ ] **Deployment**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

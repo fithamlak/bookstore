@@ -1,26 +1,55 @@
 .nav {
-  height: 5.875rem;
-  display: flex;
-  padding: 2rem;
-  align-items: center;
+  background: white;
+  height: 4rem;
   border-bottom: 1px solid #d5d5d5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+}
+
+.app_logo {
+  font-weight: bold;
+  color: #0090ff;
+  margin-right: 2rem;
+  font-size: 1.875rem;
+  letter-spacing: 1.05px;
+}
+
+.app_logo:active {
+  color: #0090ff;
+}
+
+.link {
+  color: grey;
+  font-size: 0.875rem;
+  letter-spacing: 1.3px;
+  margin-right: 1.5rem;
+}
+
+.active {
+  color: rgb(168, 43, 226);
+}
+
+.avator {
+  height: 2rem;
+  width: 2rem;
+  color: #0090ff;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 48%;
+  border: 1px solid lightgray;
 }
 
 .nav ul {
   list-style: none;
   display: flex;
+  align-items: center;
+  padding: 0;
 }
 
-.nav ul li {
-  margin-right: 1rem;
-  list-style: none;
-}
-
-.link {
+.nav ul li a {
   text-decoration: none;
-  color: rgb(82, 79, 79);
-}
-
-.active {
-  color: blueviolet;
 }
