@@ -65,3 +65,57 @@ button {
 .comment_edit li:last-child button {
   border: none;
 }
+
+.progress-stats {
+  display: flex;
+}
+
+.progress-number {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.progress-stats h3 {
+  padding: 0;
+  margin: 0;
+  font-size: 32px;
+  font-weight: 100;
+}
+
+.progress-stats h5 {
+  padding: 0;
+  margin: 0;
+  font-weight: 100;
+  color: gray;
+}
+
+.progress-bar {
+  width: 5rem;
+  height: 5rem;
+}
+
+.chapters {
+  padding-left: 32px;
+  border-left: 1px solid lightgray;
+}
+
+.chapters h4 {
+  padding: 0;
+  margin: 0;
+  font-weight: 100;
+  font-size: 0.874rem;
+  text-transform: uppercase;
+  color: lightgray;
+}
+
+.chapters h3 {
+  font-size: 16px;
+  line-height: 32px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0;
+  color: gray;
+  font-weight: 100;
+}
