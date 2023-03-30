@@ -61,7 +61,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Visit](https://fithamlak.github.io/bookstore/dist
+- [Visit](https://fithamlak.github.io/bookstore/dist)
 
 <!-- Features -->
 
