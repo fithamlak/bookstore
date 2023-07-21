@@ -61,7 +61,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Visit](https://books-wvgt.onrender.com/)
+- [Visit live demo](https://books-wvgt.onrender.com/)
 
 <!-- Features -->
 
